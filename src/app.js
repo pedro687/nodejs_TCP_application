@@ -1,8 +1,9 @@
 const net = require('net');
-
-const server = net.createServer();
+const logger = require('./utils/logger')
+const server = net.createServer()
 
 server.on("connection", (socket) => {
+    socket.setEncoding('utf-8')
     const {
         remotePort,
         remoteAddress,
@@ -11,6 +12,7 @@ server.on("connection", (socket) => {
 
     socket.on("data", (data) => {
         console.log(`Server received: ${data} from: ${remoteAddress}`)
+        logger.info(data)
 
     })
 
@@ -29,7 +31,7 @@ server.on("connection", (socket) => {
             bytesRead,
             bytesWritten,
             remotePort,
-            remoteFamily,
+            remoteFamily
         })
     })
 })
