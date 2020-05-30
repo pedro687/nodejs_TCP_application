@@ -27,7 +27,9 @@ server.on("connection", (socket) => {
         console.log("Server Closed", {
             remoteAddress,
             bytesRead,
-            bytesWritten
+            bytesWritten,
+            remotePort,
+            remoteFamily,
         })
     })
 })
