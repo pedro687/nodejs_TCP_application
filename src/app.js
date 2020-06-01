@@ -16,7 +16,7 @@ server.on("connection", (socket) => {
         logger.info(data)
         if(data)
         {
-            dataController.validateVerification(data);
+            dataController.validateVerification(data)
         }
 
     })

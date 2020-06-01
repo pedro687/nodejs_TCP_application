@@ -1,5 +1,8 @@
-{"message":"$AH353456789012345U001{}55","level":"info"}
-{"message":"$AH353456789012345U001{}55","level":"info"}
-{"message":"$AH353456789012345U001{}55","level":"info"}
-{"message":"$AH353456789012345U001{}55","level":"info"}
-{"message":"$AH353456789012345U001{}55","level":"info"}
+{"message":"$AH353456789012345U001{a}55","level":"info"}
+{"message":"$H353456789012345U001{a}55","level":"info"}
+{"message":"$H353456789012345U001{a}55","level":"info"}
+{"message":"$H353456789012345U001{a}55","level":"info"}
+{"message":"Invalid requisition.","level":"info"}
+{"message":"$H353456789012345U001{a}55","level":"info"}
+{"message":"$AH353456789012345U001{a}55","level":"info"}
+{"message":"$AH353456789012345U001{a}55","level":"info"}
