@@ -1,5 +1,6 @@
 const net = require('net');
 const logger = require('./utils/logger')
+const dataController = require('./Controller/dataController');
 const server = net.createServer()
 
 server.on("connection", (socket) => {
@@ -13,6 +14,10 @@ server.on("connection", (socket) => {
     socket.on("data", (data) => {
         console.log(`Server received: ${data} from: ${remoteAddress}`)
         logger.info(data)
+        if(data)
+        {
+            dataController.validateVerification(data);
+        }
 
     })
 
