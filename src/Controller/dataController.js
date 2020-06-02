@@ -50,7 +50,21 @@ const getCommandWord = {
 
 const getBodyData = {
     async getBodyData(dataArray) {
-        console.log("Amém")
+        const body = dataArray[3]
+        
+        if(body.slice(-1) == "}" && body.slice(0, 1) == "{") {
+            console.log("Valid Body Data")
+            await getCheckCode.getCheckCode(dataArray)
+        }
+        else {
+            console.log("Invalid Body Data")
+        }
+    }
+}
+
+const getCheckCode = {
+    async getCheckCode(dataArray) {
+        console.log("Iniciando")
     }
 }
 
