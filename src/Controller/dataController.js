@@ -15,21 +15,31 @@ module.exports = {
 
 const getImei = {
     async getImei(data) {
-        const imeiParse = data.split(/\D+/)
-        if(imeiParse[1].length == 15 ) {
-            console.log("Valid IMEI");
-            await getCommandWord.getCommandWord(data)
+        dataArray = [];
+        textSize = data.length - 2;
+        var slices = [[0,3], [3,18], [18,22], [22, textSize], [textSize, textSize+2]]
+        
+        for(slice in slices)
+        {
+            dataArray.push(data.substring(slices[slice][0], slices[slice][1]))
         }
-        else {
-            console.log("Invalid IMEI");
+        
+        if(dataArray[1].length == 15)
+        {
+            console.log("ValidImei")
+            await getCommandWord.getCommandWord(dataArray)
         }
-        console.log(imeiParse)
+        else
+        {
+            console.log("Invalid IMEI")
+        }
     }
 }
 
 const getCommandWord = {
-    async getCommandWord(data) {
-        console.log("Iniciando")
+    async getCommandWord(dataArray) {
+       console.log("Iniciando")
     }
 }
+
 //    $AH353456789012345U001{asdasdsa}55
