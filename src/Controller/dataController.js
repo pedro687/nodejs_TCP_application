@@ -38,7 +38,19 @@ const getImei = {
 
 const getCommandWord = {
     async getCommandWord(dataArray) {
-       console.log("Iniciando")
+       if(dataArray[2] != "U001") {
+           console.log("Invalid Command Word")
+       }
+       else {
+           console.log("Valid Command Word")
+           await getBodyData.getBodyData(dataArray)
+       }
+    }
+}
+
+const getBodyData = {
+    async getBodyData(dataArray) {
+        console.log("Amém")
     }
 }
 
