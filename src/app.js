@@ -1,7 +1,12 @@
-const net = require('net');
+const net = require('net')
 const logger = require('./utils/logger')
-const dataController = require('./Controller/dataController');
+const dataController = require('./Controller/dataController')
+const mongoose = require('mongoose')
 const server = net.createServer()
+
+const port = process.env.PORT || 9000
+
+require('dotenv').config()
 
 server.on("connection", (socket) => {
     socket.setEncoding('utf-8')
@@ -41,6 +46,21 @@ server.on("connection", (socket) => {
     })
 })
 
-server.listen(9000, () => {
+
+mongoose.connect(
+    process.env.DATABASE_URL,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+)
+.then(() => {
+    console.log("Database Connected")
+})
+.catch((error) => {
+    console.log(`Error Database ${error}`)
+})
+
+server.listen(port, () => {
     console.log("Server Initialized")
 })

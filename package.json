@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.16",
     "winston": "^3.2.1"
   },
   "devDependencies": {
