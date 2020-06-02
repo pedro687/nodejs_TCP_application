@@ -1,4 +1,5 @@
 const logger = require('../utils/logger');
+const { SmartWatch } = require('../Models/SmartWatch');
 
 module.exports = {
     async validateVerification(data) {
@@ -27,7 +28,7 @@ const getImei = {
         if(dataArray[1].length == 15)
         {
             console.log("ValidImei")
-            await getCommandWord.getCommandWord(dataArray)
+            await getCommandWord.getCommandWord(dataArray, data)
         }
         else
         {
@@ -37,24 +38,24 @@ const getImei = {
 }
 
 const getCommandWord = {
-    async getCommandWord(dataArray) {
+    async getCommandWord(dataArray, data) {
        if(dataArray[2] != "U001") {
            console.log("Invalid Command Word")
        }
        else {
            console.log("Valid Command Word")
-           await getBodyData.getBodyData(dataArray)
+           await getBodyData.getBodyData(dataArray, data)
        }
     }
 }
 
 const getBodyData = {
-    async getBodyData(dataArray) {
+    async getBodyData(dataArray, data) {
         const body = dataArray[3]
         
         if(body.slice(-1) == "}" && body.slice(0, 1) == "{") {
             console.log("Valid Body Data")
-            await getCheckCode.getCheckCode(dataArray)
+            await getCheckCode.getCheckCode(dataArray, data)
         }
         else {
             console.log("Invalid Body Data")
@@ -63,14 +64,34 @@ const getBodyData = {
 }
 
 const getCheckCode = {
-    async getCheckCode(dataArray) {
+    async getCheckCode(dataArray, data) {
         if(dataArray[4] != 55) {
             console.log("Invalid Checkcode")
         }
         else {
             console.log("Valid Checkckode, starting registration in the database")
+            await registerDatabase.registerInDatabase(dataArray, data)
         }
     }
 }
 
+const registerDatabase = {
+    async registerInDatabase(dataArray, data) {
+        const getImei = dataArray[1]
+        const getBody = dataArray[3]
+        const register = {
+           Imei: getImei,
+           Body: getBody
+        }
+
+        SmartWatch.create(register)
+
+        logger.info({
+            "Product Imei" : getImei,
+            "Product Body" : getBody,
+            "Requisiton": data
+        })
+    }
+
+}
 //    $AH353456789012345U001{asdasdsa}55
