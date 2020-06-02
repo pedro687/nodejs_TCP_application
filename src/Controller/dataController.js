@@ -64,7 +64,12 @@ const getBodyData = {
 
 const getCheckCode = {
     async getCheckCode(dataArray) {
-        console.log("Iniciando")
+        if(dataArray[4] != 55) {
+            console.log("Invalid Checkcode")
+        }
+        else {
+            console.log("Valid Checkckode, starting registration in the database")
+        }
     }
 }
 
